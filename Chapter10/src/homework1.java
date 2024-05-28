@@ -1,54 +1,46 @@
+
+
 import java.util.Scanner;
 
-class Calculator {
-    private double result;
+class Calculator  {
+	private int num1, num2;
+	private String op;
+	private int result;
+	
+	public int getResult() {
+		return result;
+	}
 
-    public Calculator(double num1, double num2, char operator) {
-        switch (operator) {
-            case '+':
-                this.result = num1 + num2;
-                break;
-            case '-':
-                this.result = num1 - num2;
-                break;
-            case '*':
-                this.result = num1 * num2;
-                break;
-            case '/':
-                if (num2 != 0) {
-                    this.result = num1 / num2;
-                } else {
-                    System.out.println("Error: Division by zero!");
-                }
-                break;
-            default:
-                System.out.println("Error: Invalid operator!");
-        }
-    }
-
-    public double getResult() {
-        return result;
-    }
+	public Calculator(int num1, int num2, String op) {
+		this.num1 = num1;
+		this.num2 = num2;
+		this.op = op;
+	}
+	
+	public void calc() {
+		
+		switch(op) {
+		case "+": result = num1+num2;break;
+		case "-": result = num1-num2;break;
+		case "*": result = num1*num2;break;
+		case "/": result = num1/num2;
+		}
+	}
 }
 
 public class homework1 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the first number: ");
-        double num1 = scanner.nextDouble();
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in); // 키보드 입력을 위해 Scanner 객체 생성
+		System.out.print("첫번째 정수를 입력하시오. : ");
+		int num1 = stdIn.nextInt();
+		System.out.print("두번째 정수를 입력하시오. : ");
+		int num2 = stdIn.nextInt();
+		System.out.print("연산자를 입력하시오. : ");
+		String op = stdIn.next();
 
-        System.out.print("Enter the second number: ");
-        double num2 = scanner.nextDouble();
-
-        System.out.print("Enter the operator (+, -, *, /): ");
-        char operator = scanner.next().charAt(0);
-
-        Calculator calculator = new Calculator(num1, num2, operator);
-        double result = calculator.getResult();
-
-        System.out.println("Result: " + result);
-
-        scanner.close();
-    }
+		Calculator calc = new Calculator(num1, num2, op);
+		calc.calc();
+		System.out.println("연산결과 : " + calc.getResult());
+	}
 }
